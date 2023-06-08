@@ -1,0 +1,35 @@
+name: Generate JSDocs
+on: 
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+          
+      - name: JSDoc Action
+        uses: andstor/jsdoc-action@v1.2.1
+        with:
+          output_dir: ./jsdocs
+          config_file: conf.json
+          template: minami
+          front_page: README.md  
+      
+      - name: Add to separate repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.SECRET_TOKEN }}
+        with:
+          source-directory: 'jsdocs'
+          destination-github-username: 'kpham841'
+          destination-repository-name: 'Recipeal-docs'
+          commit-message: 'update JSDocs'

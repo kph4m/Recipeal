@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipeal</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.png">
+
+  <!-- Web Components -->
+  <script src="assets/components/cook-mode.js" type="module"></script>
+  <script src="assets/components/recipe-card.js" type="module"></script>
+  <script src="assets/components/expand-recipe.js" type="module"></script>
+
+  <!-- Main Stylesheet & Scripts -->
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script">
+  <script type="module" src="assets/scripts/recipe-card-create.js"></script>
+  <!--<script type="text/javascript" src="../client/assets/scripts/main.js"></script>-->
+  <script src="assets/scripts/navigate.js" type="module"></script>
+  <script src="assets/scripts/create-edit-recipe.js" type="module"></script>
+  <!--<script src="assets/scripts/searchbar.js" type="module"></script>-->
+  <script src="assets/scripts/no-sleep.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Work+Sans:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Sweet Alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
+
+  <!-- Animate.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+  <main>
+    <script>
+      window.onload = function () {
+        if (window.localStorage.length == 0) {
+          // Introduction
+          Swal.fire({
+            title: 'Welcome to Recipeal!',
+            width: 600,
+            padding: '2em',
+            color: '#000000',
+            text: 'From saving your favorite recipes to finding new ones, Recipeal is here to make your cooking process a breeze!',
+            confirmButtonColor: '#00AB03',
+            confirmButtonText: 'Start Walkthrough',
+            showDenyButton: true,
+            denyButtonColor: '#2C5F2D',
+            denyButtonText: 'Skip',
+            backdrop: `
+        rgba(0, 0, 0, 0.5)
+        `,
+            showClass: {
+              popup: 'animate__animated animate__fadeIn'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOut'
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // My Recipes
+              Swal.fire({
+                title: 'My Recipes',
+                width: 800,
+                padding: '2em',
+                color: '#000000',
+                imageUrl: "./assets/images/My_Recipes.png",
+                text: 'My Recipes is where all your saved recipes reside. You can search for any of your recipes by name or filter by their tags!',
+                confirmButtonColor: '#00AB03',
+                confirmButtonText: 'Continue',
+                backdrop: `
+              rgba(0, 0, 0, 0.5)`,
+                showClass: {
+                  popup: 'animate__animated animate__fadeIn'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOut'
+                },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Favorites
+                  Swal.fire({
+                    title: 'Favorites',
+                    width: 800,
+                    padding: '2em',
+                    color: '#000000',
+                    imageUrl: "./assets/images/Favorites.png",
+                    text: 'Favorites is where all of your favorited recipes are displayed! You can favorite a recipe by clicking on it’s heart icon.',
+                    confirmButtonColor: '#00AB03',
+                    confirmButtonText: 'Continue',
+                    backdrop: `
+                  rgba(0, 0, 0, 0.6)`,
+                    showClass: {
+                      popup: 'animate__animated animate__fadeIn'
+                    },
+                    hideClass: {
+                      popup: 'animate__animated animate__fadeOut'
+                    },
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Explore
+                      Swal.fire({
+                        title: 'Explore',
+                        width: 800,
+                        padding: '2em',
+                        color: '#000000',
+                        imageUrl: "./assets/images/Explore.png",
+                        text: 'Explore is where you can find new recipes! Use the search bar if you’re looking for something specific or click the refresh button to browse random recipes.',
+                        confirmButtonColor: '#00AB03',
+                        confirmButtonText: 'Continue',
+                        backdrop: `
+                    rgba(0, 0, 0, 0.6)`,
+                        showClass: {
+                          popup: 'animate__animated animate__fadeIn'
+                        },
+                        hideClass: {
+                          popup: 'animate__animated animate__fadeOut'
+                        },
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          // Buttons
+                          Swal.fire({
+                            width: 600,
+                            padding: '2em',
+                            color: '#000000',
+                            imageUrl: "./assets/images/Buttons.png",
+                            confirmButtonColor: '#00AB03',
+                            confirmButtonText: 'Continue',
+                            backdrop: `
+                      rgba(0, 0, 0, 0.6)`,
+                            showClass: {
+                              popup: 'animate__animated animate__fadeIn'
+                            },
+                            hideClass: {
+                              popup: 'animate__animated animate__fadeOut'
+                            },
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              // Buttons
+                              Swal.fire({
+                                title: "That's all from us. Ready to get cookin'?",
+                                width: 800,
+                                padding: '2em',
+                                color: '#000000',
+                                confirmButtonColor: '#00AB03',
+                                confirmButtonText: "Let's start!",
+                                backdrop: `
+                      rgba(0, 0, 0, 0.6)`,
+                                showClass: {
+                                  popup: 'animate__animated animate__fadeIn'
+                                },
+                                hideClass: {
+                                  popup: 'animate__animated animate__fadeOut'
+                                },
+                              })
+                            }
+                          })
+                        }
+                        else {
+                          return;
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            }
+          })
+          document.getElementById("no-recipes").className = "shown";
+        }
+      };
+    </script>
+    <!-- No Recipes Prompt -->
+    <div class="hidden" id="no-recipes">Looks like you don't have any recipes saved.<br> Try creating your own or save one from Explore!</div>
+
+    <!-- HOME PAGE -->
+    <section class="section--recipe-cards shown">
+      <nav class="navbarv2" style="background-color: rgba(148, 193, 30, 1);">
+        <img src="assets/images/logo.png" id="logo">
+        <div class="navbar-nav d-flex flex-row">
+          <button class="navBtn" id="my-recipes-btn">
+            <span class="nav-label">
+              My Recipes
+            </span>
+          </button>
+          <button class="navBtn" id="my-fav-btn">
+            <span class="nav-label">Favorites</span>
+          </button>
+        </div>
+        <button class="navBtn" id="explore-btn">
+          <span>Explore</span>
+        </button>
+      </nav>
+
+      <!-- RECIPE CARDS -->
+      <section class="recipe-cards--wrapper shown">
+        <!--Search bar and filter-->
+        <div id="search-bar-filter">
+          <input id="search-bar" type="text" onkeyup="searchRecipe()" placeholder="Search for recipes" />
+          <div class="accordion-item ml-3">
+            <button id="filter-btn" class="btn accordion-button collapsed flag" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="showTags()">
+              <i id="filter-icon" class="bi bi-funnel-fill"></i>
+            </button>
+          </div>
+        </div>
+        <!-- DISPLAY TAGS -->
+        <div id="tag-wrapper-filter"></div>
+        <div id="recipe-cards">
+          <!-- Recipes Added Here -->
+        </div>
+      </section>
+
+      <!-- COOK MODE PAGE -->
+      <section class="section--cook-mode">
+        <cook-mode></cook-mode>
+      </section>
+
+      <!-- EXPAND RECIPES PAGE-->
+      <section class="section--recipe-expand">
+        <recipe-expand></recipe-expand>
+      </section>
+
+      <!-- EXPLORE RECIPES PAGE -->
+      <section class="explore container-fluid">
+        <button id="refresh-btn">
+          <img src="assets/images/refresh.png" id="refresh">
+        </button>
+        <!--Search bar-->
+        <div id="explore-search-wrapper">
+          <input type="text" id="explore-search-bar" placeholder="Search for recipes" />
+        </div>
+        <!--Explore recipe cards-->
+        <div id="explore-wrapper">
+          <div id="card-wrapper">
+          </div>
+        </div>
+        <div id="explore-buttons">
+          <button id="show-more-btn">
+            <img src="assets/images/arrow-down.png" id="arrow-down">
+            Show More</button>
+        </div>
+      </section>
+
+      <!-- CREATE RECIPE PAGE -->
+      <section class="section--create-recipe">
+        <div id="create-recipe--input-wrapper">
+
+          <!-- FIRST COLUMN -->
+          <div class="input-wrapper--column">
+            <div class="input-card" id="img-card">
+              <label for="input-img" class="custom-file-upload">
+                <img id="display-image"
+                  src="https://www.pngkit.com/png/full/129-1298005_png-file-upload-image-icon-png.png" />
+              </label>
+              <input id="input-img" type="file" style="display: none" />
+            </div>
+            <!-- Name -->
+            <div class="input-card">
+              <label for="input-name" class="card-label">Name</label>
+              <input type="text" id="input-name" name="input-name">
+            </div>
+            <!-- Description -->
+            <div class="input-card">
+              <label for="input-desc" class="card-label">Description</label>
+              <textarea id="input-desc" name="input-desc" rows="5" cols="33"></textarea>
+            </div>
+            <!-- Nutrition Card-->
+            <div class="input-card">
+              <label for="nutrition-facts" class="card-label">Nutrition Information</label><br>
+              <label for="input-calories" class="nut-info-label">Calories</label>
+              <input type="number" id="input-calories" name="input-calories" class="nutrition-cat"><br>
+              <label for="input-carbs" class="nut-info-label">Carbohydrates(g)</label>
+              <input type="number" id="input-carbs" name="input-carbs" class="nutrition-cat"><br>
+              <label for="input-fat" class="nut-info-label">Fat(g)</label>
+              <input type="number" id="input-fat" name="input-fat" class="nutrition-cat"><br>
+              <label for="input-protein" class="nut-info-label">Protein(g)</label>
+              <input type="number" id="input-protein" name="input-protein" class="nutrition-cat">
+            </div>
+            <!-- Time -->
+            <div class="input-card">
+              <label for="input-time" class="card-label">Time</label>
+              <div id="time-inputs">
+                <label for="input-hours" class="time-label">Hour:</label>
+                <input type="number" class="input-hours-mins" id="input-hours" name="input-hours">
+                <label for="input-minutes" class="time-label">Minute:</label>
+                <input type="number" class="input-hours-mins" id="input-mins" name="input-mins">
+              </div>
+            </div>
+            <!-- Tags -->
+            <div class="input-card">
+              <label for="input-tags" class="card-label">Tags</label>
+              <div id="tag-wrapper">
+              </div>
+              <br>
+              <!-- Create new tag input button-->
+              <button class="add-btn tag-btn" type="button">+</button>
+              <p id="add-tag-label" class="add-label">Click to add tags</p>
+            </div>
+          </div>
+          <!-- SECOND COLUMN -->
+          <div class="input-wrapper--column">
+            <!-- Ingredients -->
+            <div class="input-card" id="ing-card">
+              <label class="card-label">Ingredients</label><br>
+              <div id="ing-wrapper"></div><br>
+              <!-- Create new ingredient button-->
+              <button class="add-btn ing-btn" type="button">+</button>
+              <p id="add-ing-label" class="add-label">Click to add
+                ingredients</p>
+            </div>
+          </div>
+          <!-- THIRD COLUMN -->
+          <div class="input-wrapper--column">
+            <div class="input-card" id="step-card">
+              <label class="card-label">Steps</label>
+              <div id="step-wrapper">
+              </div>
+              <br><br>
+              <!-- Create new step button-->
+              <button class="add-btn step-btn" type="button">+</button>
+              <p id="add-step-label" class="add-label">Click to add steps</p>
+            </div>
+            <!-- Save Button for Create Recipe -->
+            <button id="save-create-btn" class="save-btn-create">
+              <img src="assets/images/checkmark.png" id="checkmark-icon">
+            </button>
+            <!-- Save Button for Edit Recipe -->
+            <button id="save-edit-btn" class="save-btn-edit">
+              <img src="assets/images/checkmark.png" id="checkmark-icon">
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <button id="create-recipe-btn">
+        <img src="assets/images/plus.png" id="plus-icon">
+      </button>
+      <button id="return-btn" class="hidden" onclick="returnToHomePage()">
+        <img src="assets/images/arrow-left.png" id="arrow-left"> <b>Back</b>
+      </button>
+      <button id="delete-btn" onclick="showDeleteButtons()">
+        <img src="assets/images/trash.png" id="delbut-icon" class="trash">
+      </button>
+      <button id="cook-mode-btn" class="hidden">
+        <img src="assets/images/knife_fork.png" id="knife-fork">
+      </button>
+      <button id="edit-btn">
+        <img src="assets/images/edit.png" id="edit-icon">
+      </button>
+      <button id="sleep-btn" class="hidden">
+        <img class="off" id="sleep-icon" src="assets/images/bi_brightness-high.png"></img>
+      </button>
+
+      <!-- DELETE MODAL -->
+      <div class="delete-modal-expand hidden">
+        <div class="card delete-modal-expand-content" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Are you sure you want to delete this recipe?</h5>
+            <button id="modal-delete" class="btn btn-primary" onclick="confirmDelete()">Delete</button>
+            <button id="modal-close" class="btn btn-secondary" onclick="cancelDelete()">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NO SLEEP -->
+      <script>
+        let noSleep = new NoSleep();
+        let sleepBtn = document.getElementById("sleep-btn");
+        let sleepIcon = document.getElementById("sleep-icon");
+        sleepBtn.addEventListener("click", () => {
+          if (sleepIcon.className === "off") {
+            noSleep.enable();
+            sleepIcon.src = "assets/images/bi_brightness-high-fill.png";
+            sleepIcon.className = "on";
+          } else {
+            noSleep.disable();
+            sleepIcon.src = "assets/images/bi_brightness-high.png";
+            sleepIcon.className = "off";
+          }
+        });
+      </script>
+
+      <!-- NAVIGATE TO EDIT PAGE -->
+      <script type="module">
+        import { navEdit } from "./assets/scripts/create-edit-recipe.js";
+
+        document.getElementById('edit-btn').onclick = function () {
+          navEdit('Edit Recipe');
+        }
+      </script>
+    </section>
+  </main>
+</body>
+
+</html>
