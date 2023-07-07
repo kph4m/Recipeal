@@ -42,6 +42,27 @@ let saveBtn = document.querySelector(".save-to-rec-btn");
 
 /** FUNCTIONS **/
 
+/**
+ * @method setLoading
+ *  Shows loading spinner while explore page recipes is empty
+ */
+export function setLoading () {
+  let loading = setInterval(function () {
+    // Show Loading spinner while explore-wrapper is empty
+    let loadingSpinner = document.getElementById("loader");
+    let showMoreBtn = document.getElementById("show-more-btn");
+    if (document.getElementById("explore-wrapper").innerHTML == "") {
+      loadingSpinner.style.display = "flex";
+    }
+    // If explore-wrapper is not empty, hide loading spinner
+    else {
+      loadingSpinner.style.display = "none";
+      showMoreBtn.style.display = "flex";
+      clearInterval(loading);
+    }
+  }, 100);
+}
+
 /* IMAGE */
 
 /**
@@ -351,7 +372,7 @@ function saveBase(page, favoriteStatus) {
       showConfirmButton: true,
       confirmButtonText: 'Will do!',
       confirmButtonColor: '#00AB03',
-    })
+    });
   }
 
   // Get time and store it in the object
@@ -367,7 +388,7 @@ function saveBase(page, favoriteStatus) {
       showConfirmButton: true,
       confirmButtonText: 'Will do!',
       confirmButtonColor: '#00AB03',
-    })
+    });
   }
 
   let i = 1;
@@ -433,7 +454,7 @@ if (document.getElementById(`input-steps1`)) {
       title: 'Recipe saved!',
       showConfirmButton: false,
       timer: 1500
-    })
+    });
     reset();
     // Creates a recipe card & displays it on the "My Recipes" page
     newCard(newRecipe.name.toLowerCase());
@@ -451,7 +472,7 @@ if (document.getElementById(`input-steps1`)) {
       title: 'Recipe overwritten!',
       showConfirmButton: false,
       timer: 1500
-    })
+    });
     reset();
     // Creates a recipe card & displays it on the "My Recipes" page
     newCard(newRecipe.name.toLowerCase());
@@ -501,7 +522,7 @@ function saveDataCreate() {
       showConfirmButton: true,
       confirmButtonText: 'Will do!',
       confirmButtonColor: '#00AB03',
-    })
+    });
   }
   // Check if recipe has already been made
   else if (recipeExists(checkName)) {
@@ -528,7 +549,7 @@ function saveDataCreate() {
       } else  {
         return;
       }
-    })
+    });
   }
   // Else, create new recipe object
   else {
@@ -558,7 +579,7 @@ function saveDataCreate() {
     title: 'Recipe updated!',
     showConfirmButton: false,
     timer: 1500
-  })
+  });
   reset();
   let recipeCards = document.getElementById("recipe-cards").children;
   for(let i = 0; i < recipeCards.length; i++) {
@@ -693,7 +714,7 @@ function saveDataCreate() {
   let returnButEdit = document.getElementById("return-btn");
   returnButEdit.addEventListener("click", function resetName() {
     name = "";
-  })
+  });
 }
 
 /**
@@ -985,10 +1006,10 @@ function saveDataCreate() {
                 title: 'Recipe saved!',
                 showConfirmButton: false,
                 timer: 1500
-              })
+              });
             }
           }
-      )}
+      )};
     }
   }
 
@@ -1365,10 +1386,10 @@ export async function searchSpoon() {
                                             title: 'Recipe saved!',
                                             showConfirmButton: false,
                                             timer: 1500
-                                          })
+                                          });
                                         }
                                     }
-                                  )} 
+                                  )};
                             });
                         });
                 }

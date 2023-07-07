@@ -1,5 +1,5 @@
 // Contains functions for navigating between pages
-import { saveToMyRecipes, searchSpoon, searchRecipe, filterTags, reset } from "./create-edit-recipe.js";
+import { saveToMyRecipes, searchSpoon, searchRecipe, filterTags, reset, setLoading } from "./create-edit-recipe.js";
 import { SPOON_API_KEY } from "./config.js";
 
 /** BUTTONS **/
@@ -138,6 +138,7 @@ export function changeView(e) {
   }
   // navigating to explore page
   else if (innerText === "Explore" && !deleteMode) {
+    setLoading();
     myRecipes.classList.remove("shown");
     createRecipe.classList.remove("shown");
     expandRecipe.classList.remove("shown");
@@ -260,6 +261,7 @@ async function fetchApiRecipes() {
 function refresh() {
   document.querySelector("#explore-wrapper").innerHTML = "";
   fetchApiRecipes();
+  setLoading();
 }
 
 /**
