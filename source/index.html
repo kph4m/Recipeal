@@ -195,22 +195,71 @@
 
     <!-- HOME PAGE -->
     <section class="section--recipe-cards shown">
+
       <nav class="navbarv2" style="background-color: rgba(148, 193, 30, 1);">
         <img src="assets/images/logo.png" id="logo">
         <div class="navbar-nav d-flex flex-row">
-          <button class="navBtn" id="my-recipes-btn">
+          <button class="navBtn my-recipes-btn">
             <span class="nav-label">
               My Recipes
             </span>
           </button>
-          <button class="navBtn" id="my-fav-btn">
+          <button class="navBtn my-fav-btn">
             <span class="nav-label">Favorites</span>
           </button>
         </div>
-        <button class="navBtn" id="explore-btn">
+        <button class="navBtn explore-btn">
           <span>Explore</span>
         </button>
+
+        <script>
+          window.addEventListener('resize', function () {
+            let hamburger = document.getElementById('hamburger-menu');
+            if (window.innerWidth > 800) {
+              document.getElementById("mobile-nav-menu").style.display = "none";
+              if (hamburger.classList.contains('isactive')) {
+                hamburger.classList.remove('isactive');
+              }
+              hamburger.classList.toggle('notactive');
+            }
+          });
+
+          function mobileNavToggle() {
+            let mobileNavMenu = document.getElementById("mobile-nav-menu");
+            if (mobileNavMenu.style.display === "flex") {
+              mobileNavMenu.style.display = "none";
+            } else {
+              mobileNavMenu.style.display = "flex";
+            }
+            let hamburger = document.getElementById('hamburger-menu');
+            if (hamburger.classList.contains('notactive')) {
+              hamburger.classList.remove('notactive');
+            }
+            hamburger.classList.toggle('isactive');
+          }
+        </script>
+
+        <div id="hamburger-menu" onclick="mobileNavToggle()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
       </nav>
+
+      <!-- Mobile nav menu -->
+      <div id="mobile-nav-menu">
+        <button class="navMobileBtn my-recipes-btn">
+          <span class="nav-label">
+            My Recipes
+          </span>
+        </button>
+        <button class="navMobileBtn my-fav-btn">
+          <span class="nav-label">Favorites</span>
+        </button>
+        <button class="navMobileBtn explore-btn">
+          <span>Explore</span>
+        </button>
+      </div>
 
       <!-- RECIPE CARDS -->
       <section class="recipe-cards--wrapper shown">

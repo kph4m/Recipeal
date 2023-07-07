@@ -9,19 +9,27 @@ createRecipeButton.addEventListener("click", () => {
   changeView("Create Recipe");
 });
 
-let myRecipesButton = document.getElementById("my-recipes-btn");
-myRecipesButton.addEventListener("click", (e) => {
-  changeView(e);
-});
-let favoriteButton = document.getElementById("my-fav-btn");
-favoriteButton.addEventListener("click", (e) =>{
-  changeView(e);
-});
+let myRecipesButton = document.getElementsByClassName("my-recipes-btn");
+for (let i = 0; i < myRecipesButton.length; i++) {
+  myRecipesButton[i].addEventListener("click", (e) => {
+    changeView(e);
+  });
+}
 
-let exploreButton = document.getElementById("explore-btn");
-exploreButton.addEventListener("click", (e) => {
-  changeView(e);
-});
+let favoriteButton = document.getElementsByClassName("my-fav-btn");
+for (let i = 0; i < favoriteButton.length; i++) {
+  favoriteButton[i].addEventListener("click", (e) => {
+    changeView(e);
+  });
+}
+
+let exploreButton = document.getElementsByClassName("explore-btn");
+for (let i = 0; i < exploreButton.length; i++) {
+  exploreButton[i].addEventListener("click", (e) => {
+    changeView(e);
+  });
+}
+
 let cookModeBtn = document.getElementById("cook-mode-btn");
 cookModeBtn.addEventListener("click", (e) => {
   changeView(e);
@@ -51,6 +59,20 @@ recipeSearch.addEventListener("keyup", () => {
 
 // Keeps track of the first time the explore page is visited
 let exploreCheck = false;
+
+/**
+ * @method resetMobileNavMenu
+ * Resets mobile nav menu to default state
+ */
+function resetMobileNavMenu() {
+  let mobileNavMenu = document.getElementById("mobile-nav-menu");
+  let hamburger = document.getElementById('hamburger-menu');
+  if (mobileNavMenu.style.display == "flex") {
+    mobileNavMenu.style.display = "none";
+    hamburger.classList.remove('isactive');
+    hamburger.classList.toggle('notactive');
+  }
+}
 
 /**
  * @method changeView
@@ -85,6 +107,7 @@ export function changeView(e) {
 
   // navigating to My Recipes page
   if (innerText === "My Recipes") {
+    resetMobileNavMenu();
     if(window.localStorage.length === 0) {
       noRecipes.className = "shown";
     } else {
@@ -113,6 +136,7 @@ export function changeView(e) {
   }
   // navigating to favorites page
   else if(innerText === "Favorites" && !deleteMode){
+    resetMobileNavMenu();
     myRecipes.classList.add("shown");
     explore.classList.remove("shown");
 
@@ -139,6 +163,7 @@ export function changeView(e) {
   // navigating to explore page
   else if (innerText === "Explore" && !deleteMode) {
     setLoading();
+    resetMobileNavMenu();
     myRecipes.classList.remove("shown");
     createRecipe.classList.remove("shown");
     expandRecipe.classList.remove("shown");
@@ -230,12 +255,15 @@ function switchHighlight(innerText) {
       e.style.textDecoration = "";
     }
   }
-  let exploreBtn = document.getElementById("explore-btn");
-  if(exploreBtn.innerText === innerText) {
-    exploreBtn.style.textDecoration = "underline";
-    exploreBtn.style.textDecorationThickness = "3px";
-  } else {
-    exploreBtn.style.textDecoration = "";
+  let exploreBtn = document.getElementsByClassName("explore-btn");
+  for (let i = 0; i < exploreBtn.length; i++) {
+    e = exploreBtn[i];
+    if (e.innerText === innerText) {
+      e.style.textDecoration = "underline";
+      e.style.textDecorationThickness = "3px";
+    } else {
+      e.style.textDecoration = "";
+    }
   }
 }
 

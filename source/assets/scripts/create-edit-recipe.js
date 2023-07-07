@@ -1009,7 +1009,7 @@ function saveDataCreate() {
               });
             }
           }
-      )};
+      );};
     }
   }
 
@@ -1389,7 +1389,7 @@ export async function searchSpoon() {
                                           });
                                         }
                                     }
-                                  )};
+                                  );};
                             });
                         });
                 }

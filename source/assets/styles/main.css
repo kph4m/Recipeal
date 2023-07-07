@@ -96,13 +96,13 @@ section:not(section.shown) {
   font-size: 2.5vw;
 }
 
-.nav-label, #explore-btn {
+.nav-label, .explore-btn {
   font-family: var(--body-font);
   font-weight: 700;
   font-size: 20px;
 }
 
-#explore-btn {
+.explore-btn {
   transition: 0.2s;
 }
 
@@ -110,7 +110,7 @@ section:not(section.shown) {
   color: var(--darkGreen);
 }
 
-#explore-btn:hover {
+.explore-btn:hover {
   transform: scale(1.05);
 }
 
@@ -137,6 +137,67 @@ section:not(section.shown) {
   box-shadow: none;
 }
 
+/* Mobile Nav */
+
+#hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+#hamburger-menu.isactive .bar:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger-menu.isactive .bar:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+#hamburger-menu.isactive .bar:nth-child(3) {
+  transform: translateY(-12px) rotate(-45deg);
+}
+
+#hamburger-menu.notactive .bar:nth-child(2) {
+  opacity: 1;
+}
+
+#hamburger-menu.notactive .bar:nth-child(1) {
+  transform: translateY(0) rotate(0);
+}
+
+#hamburger-menu.notactive .bar:nth-child(3) {
+  transform: translateY(0) rotate(0);
+}
+
+#mobile-nav-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--limeGreen);
+  padding: 20px;
+}
+
+#mobile-nav-menu button {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
 /* Explore */
 
 #loader {
@@ -147,10 +208,10 @@ section:not(section.shown) {
   z-index: 1;
   width: 120px;
   height: 120px;
-  margin: -76px 0 0 -76px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid var(--neonGreen);
+  margin: -76px 0 0 -76px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
@@ -547,6 +608,7 @@ input[type="number"]:focus {
   border: none;
   cursor: pointer;
   color: white;
+  z-index: 100;
 }
 
 #delete-btn:hover, #create-recipe-btn:hover, #save-create-btn:hover, #edit-btn:hover, #cook-mode-btn:hover, #refresh-btn:hover, #sleep-btn:hover {
@@ -611,13 +673,13 @@ input[type="number"]:focus {
   box-shadow: 0 0 5px 4px rgba(0, 0, 0, 0.18);
 }
 
-#my-recipes-btn, #my-fav-btn {
+.my-recipes-btn, .my-fav-btn {
   background-color: transparent;
   color: white;
   border: none;
 }
 
-#explore-btn {
+.explore-btn {
   background-color: var(--darkGreen);
   color: white;
   border: transparent;
@@ -794,11 +856,23 @@ button.filter-off {
 /* MEDIA QUERY */
 
 @media screen and (max-width: 800px) {
-  .navbarv2 {
-    flex-direction: column;
+  #loader {
+    width: 60px;
+    height: 60px;
+    left: 45%;
+    top: 50%;
+    margin: 0;
   }
 
-  #explore-btn {
+  #hamburger-menu {
+    display: flex;
+  }
+
+  .navBtn {
+    display: none;
+  }
+
+  .explore-btn {
     margin-top: 20px;
     width: 15vw;
   }
@@ -809,7 +883,7 @@ button.filter-off {
   }
 
   #search-bar {
-    height: 4vh;
+    height: 6vh;
   }
 
   #explore-search-bar {
@@ -837,7 +911,7 @@ button.filter-off {
   }
 
   #return-btn {
-    top: 200px;
+    top: 100px;
     left: 10px;
   }
 
@@ -859,11 +933,15 @@ button.filter-off {
 }
 
 @media screen and (max-width: 420px) {
+  #logo {
+    width: 40vw;
+  }
+
   #search-bar, #explore-search-bar {
     background: none;
   }
 
-  #explore-btn {
+  .explore-btn {
     width: 32vw;
   }
 
@@ -947,7 +1025,7 @@ button.filter-off {
     width: 30%;
   }
 
-  #my-recipes-btn, #my-fav-btn, #explore-btn {
+  .my-recipes-btn, .my-fav-btn, .explore-btn {
     font-size: 1.20em;
     padding: 10px;
     text-decoration-thickness: 3px;
