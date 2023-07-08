@@ -67,8 +67,9 @@ let exploreCheck = false;
 function resetMobileNavMenu() {
   let mobileNavMenu = document.getElementById("mobile-nav-menu");
   let hamburger = document.getElementById('hamburger-menu');
-  if (mobileNavMenu.style.display == "flex") {
-    mobileNavMenu.style.display = "none";
+  if (mobileNavMenu.classList.contains('enter')) {
+    mobileNavMenu.classList.toggle('exit');
+    mobileNavMenu.classList.remove('enter');
     hamburger.classList.remove('isactive');
     hamburger.classList.toggle('notactive');
   }

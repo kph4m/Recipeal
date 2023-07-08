@@ -226,10 +226,13 @@
 
           function mobileNavToggle() {
             let mobileNavMenu = document.getElementById("mobile-nav-menu");
-            if (mobileNavMenu.style.display === "flex") {
-              mobileNavMenu.style.display = "none";
+            if (mobileNavMenu.classList.contains('enter')) {
+              mobileNavMenu.classList.toggle('exit');
+              mobileNavMenu.classList.remove('enter');
             } else {
               mobileNavMenu.style.display = "flex";
+              mobileNavMenu.classList.toggle('enter');
+              mobileNavMenu.classList.remove('exit');
             }
             let hamburger = document.getElementById('hamburger-menu');
             if (hamburger.classList.contains('notactive')) {
