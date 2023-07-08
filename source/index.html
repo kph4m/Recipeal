@@ -215,8 +215,10 @@
         <script>
           window.addEventListener('resize', function () {
             let hamburger = document.getElementById('hamburger-menu');
+            let mobileNavMenu = document.getElementById("mobile-nav-menu");
             if (window.innerWidth > 800) {
-              document.getElementById("mobile-nav-menu").style.display = "none";
+              mobileNavMenu.classList.toggle('exit');
+              mobileNavMenu.classList.remove('enter');
               if (hamburger.classList.contains('isactive')) {
                 hamburger.classList.remove('isactive');
               }
