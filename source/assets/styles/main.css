@@ -188,6 +188,7 @@ section:not(section.shown) {
   align-items: center;
   background-color: var(--limeGreen);
   padding: 20px;
+  z-index: 99;
 }
 
 #mobile-nav-menu button {
